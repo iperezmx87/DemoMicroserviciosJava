@@ -1,0 +1,7 @@
+spring:
+  # 1. Configuración de la Base de Datos (PostgreSQL)
+  datasource:
+    url: jdbc:postgresql://localhost:5432/bd_saldos_cuentas
+    username: postgres
+    password: Saucedo870824
+    driver-class-name: org.postgresql.Driver

@@ -1,4 +1,4 @@
-package org.isra.microservicios.cuentasmovimientos;
+package org.isra.microservicios.saldo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,8 +6,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
 @EnableScheduling
-public class CuentasMovimientosApplication {
+public class SaldoApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(CuentasMovimientosApplication.class, args);
+		SpringApplication.run(SaldoApplication.class, args);
 	}
 }
