@@ -6,6 +6,10 @@ import java.util.UUID;
 import org.bson.types.Decimal128;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import tools.jackson.databind.PropertyNamingStrategies;
+import tools.jackson.databind.annotation.JsonNaming;
+
+@JsonNaming(PropertyNamingStrategies.UpperCamelCaseStrategy.class)
 public class DineroDepositadoEvento extends EventoBase {
     
     @Field("Monto")

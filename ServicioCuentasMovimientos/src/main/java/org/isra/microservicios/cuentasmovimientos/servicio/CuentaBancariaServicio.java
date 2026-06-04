@@ -37,7 +37,7 @@ public class CuentaBancariaServicio {
             eventosRepositorio.save(evento);
 
             MensajeSalida mensajeSalida = new MensajeSalida();
-            mensajeSalida.setId(UUID.randomUUID());
+            mensajeSalida.setId(evento.getEventId());
             mensajeSalida.setTopic("cuentas_movimientos_eventos");
             mensajeSalida.setPayload(objectMapper.writeValueAsString(evento));
 
@@ -56,7 +56,7 @@ public class CuentaBancariaServicio {
             eventosRepositorio.save(evento);
 
             MensajeSalida mensajeSalida = new MensajeSalida();
-            mensajeSalida.setId(UUID.randomUUID());
+            mensajeSalida.setId(evento.getEventId());
             mensajeSalida.setTopic("cuentas_movimientos_eventos");
             mensajeSalida.setPayload(objectMapper.writeValueAsString(evento));
 
