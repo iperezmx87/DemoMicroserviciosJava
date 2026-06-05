@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>org.isra.microservicios</groupId>
-	<artifactId>servicio-saldo</artifactId>
+	<artifactId>estadocuenta</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>servicio-saldo</name>
+	<name>estadocuenta</name>
 	<description/>
 	<url/>
 	<licenses>
@@ -51,20 +51,22 @@
 			<artifactId>spring-boot-starter-webmvc-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jdbc</artifactId>
 		</dependency>
+
 		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<scope>runtime</scope>
+			<groupId>com.microsoft.sqlserver</groupId>
+    		<artifactId>mssql-jdbc</artifactId>
+    		<scope>runtime</scope>
 		</dependency>
-		      <dependency>
+	
+		<dependency>
             <groupId>org.springframework.kafka</groupId>
             <artifactId>spring-kafka</artifactId>
         </dependency>
-
 	</dependencies>
 
 	<build>

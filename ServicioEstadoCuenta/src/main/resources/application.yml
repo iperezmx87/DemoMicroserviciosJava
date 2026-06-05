@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    # Ajusta tu IP, puerto y nombre de BD
+    url: jdbc:sqlserver://localhost;instanceName=SQLEXPRESS;databaseName=BDESTADOCUENTA;encrypt=true;trustServerCertificate=true;
+    username: sa
+    password: Saucedo870824
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
