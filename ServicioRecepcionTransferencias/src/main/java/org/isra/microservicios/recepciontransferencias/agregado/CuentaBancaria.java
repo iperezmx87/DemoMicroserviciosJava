@@ -1,16 +1,16 @@
-package org.isra.microservicios.cuentasmovimientos.agregado;
+package org.isra.microservicios.recepciontransferencias.agregado;
 
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
 import org.bson.types.Decimal128;
-import org.isra.microservicios.cuentasmovimientos.modelo.DineroDepositadoEvento;
-import org.isra.microservicios.cuentasmovimientos.modelo.DineroRetiradoEvento;
-import org.isra.microservicios.cuentasmovimientos.modelo.EventoBase;
-import org.isra.microservicios.cuentasmovimientos.modelo.TransferenciaDevueltaEvento;
-import org.isra.microservicios.cuentasmovimientos.modelo.TransferenciaRealizadaEvento;
-import org.isra.microservicios.cuentasmovimientos.modelo.TransferenciaRecibidaEvento;
+import org.isra.microservicios.recepciontransferencias.modelo.DineroDepositadoEvento;
+import org.isra.microservicios.recepciontransferencias.modelo.DineroRetiradoEvento;
+import org.isra.microservicios.recepciontransferencias.modelo.EventoBase;
+import org.isra.microservicios.recepciontransferencias.modelo.TransferenciaDevueltaEvento;
+import org.isra.microservicios.recepciontransferencias.modelo.TransferenciaRealizadaEvento;
+import org.isra.microservicios.recepciontransferencias.modelo.TransferenciaRecibidaEvento;
 
 import lombok.Data;
 
@@ -36,40 +36,12 @@ public class CuentaBancaria {
         eventos.clear();
     }
 
-    public void depositar(Decimal128 monto) {
-        if (monto.compareTo(Decimal128.POSITIVE_ZERO) <= 0) {
-            throw new IllegalArgumentException("El monto a depositar debe ser mayor que cero.");
-        }
-
-        DineroDepositadoEvento evento = new DineroDepositadoEvento(id, monto, version + 1);
-
-        aplicarEvento(evento);
-
-        eventos.add(evento);
+    public void recibirTransferencia() {
+        
     }
 
-    public void retirar(Decimal128 monto) {
-        if (monto.compareTo(Decimal128.POSITIVE_ZERO) <= 0) {
-            throw new IllegalArgumentException("El monto a retirar debe ser mayor que cero.");
-        }
+    public void devolverTransferncia(){
 
-        DineroRetiradoEvento evento = new DineroRetiradoEvento(id, monto, version + 1);
-
-        aplicarEvento(evento);
-
-        eventos.add(evento);
-    }
-
-    public void enviarTransferencia(UUID idDestino, Decimal128 monto) {
-        if (monto.compareTo(Decimal128.POSITIVE_ZERO) <= 0) {
-            throw new IllegalArgumentException("El monto a retirar debe ser mayor que cero.");
-        }
-
-        TransferenciaRealizadaEvento evento = new TransferenciaRealizadaEvento(id, monto, version + 1, idDestino);
-
-        aplicarEvento(evento);
-
-        eventos.add(evento);
     }
 
     public void reconstruirDesdeEventos(List<EventoBase> eventos) {

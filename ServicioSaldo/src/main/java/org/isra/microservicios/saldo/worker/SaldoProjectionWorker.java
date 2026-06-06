@@ -33,6 +33,7 @@ public class SaldoProjectionWorker {
         // tratamiento del saldo dependiendo del tipo de evento
         switch (evento.getTipoEvento()) {
             case "DineroRetiradoEvento" -> evento.setMonto(evento.getMonto().negate());
+            case "TransferenciaRealizadaEvento" -> evento.setMonto(evento.getMonto().negate());
             default -> {
             }
         }

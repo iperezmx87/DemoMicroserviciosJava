@@ -1,15 +1,15 @@
-package org.isra.microservicios.cuentasmovimientos.config;
+package org.isra.microservicios.recepciontransferencias.config;
 
 import java.util.UUID;
 
 import org.bson.Document;
 import org.bson.types.Decimal128;
-import org.isra.microservicios.cuentasmovimientos.modelo.DineroDepositadoEvento;
-import org.isra.microservicios.cuentasmovimientos.modelo.DineroRetiradoEvento;
-import org.isra.microservicios.cuentasmovimientos.modelo.EventoBase;
-import org.isra.microservicios.cuentasmovimientos.modelo.TransferenciaDevueltaEvento;
-import org.isra.microservicios.cuentasmovimientos.modelo.TransferenciaRealizadaEvento;
-import org.isra.microservicios.cuentasmovimientos.modelo.TransferenciaRecibidaEvento;
+import org.isra.microservicios.recepciontransferencias.modelo.DineroDepositadoEvento;
+import org.isra.microservicios.recepciontransferencias.modelo.DineroRetiradoEvento;
+import org.isra.microservicios.recepciontransferencias.modelo.EventoBase;
+import org.isra.microservicios.recepciontransferencias.modelo.TransferenciaDevueltaEvento;
+import org.isra.microservicios.recepciontransferencias.modelo.TransferenciaRealizadaEvento;
+import org.isra.microservicios.recepciontransferencias.modelo.TransferenciaRecibidaEvento;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.data.convert.ReadingConverter;
 
