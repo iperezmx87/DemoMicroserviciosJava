@@ -66,6 +66,26 @@ public class CuentaBancariaServicio {
         cuentaBancaria.limpiarEventos();
     }
 
+    @Transactional
+    public void enviarTransferencia(UUID cuentaOrigenId, UUID cuentaDestinoId, Decimal128 monto) {
+        CuentaBancaria cuentaBancaria = obtenerCuentaBancaria(cuentaOrigenId);
+
+        cuentaBancaria.enviarTransferencia(cuentaDestinoId, monto);
+
+        for (EventoBase evento : cuentaBancaria.getEventos()) {
+            eventosRepositorio.save(evento);
+
+            MensajeSalida mensajeSalida = new MensajeSalida();
+            mensajeSalida.setId(evento.getEventId());
+            mensajeSalida.setTopic("cuentas_movimientos_eventos");
+            mensajeSalida.setPayload(objectMapper.writeValueAsString(evento));
+
+            mensajeSalidaRepositorio.save(mensajeSalida);
+        }
+
+        cuentaBancaria.limpiarEventos();
+    }
+
     public CuentaBancaria obtenerCuentaBancaria(UUID id) {
         CuentaBancaria cuentaBancaria = new CuentaBancaria(id);
         List<EventoBase> eventos = eventosRepositorio.findByAggregateIdOrderByVersionAsc(id);
