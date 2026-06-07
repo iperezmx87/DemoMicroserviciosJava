@@ -14,7 +14,7 @@ public class EstadoCuentaProjectionWorker {
     private final JdbcTemplate jdbcTemplate;
 
     public EstadoCuentaProjectionWorker(
-        ObjectMapper objectMapper, JdbcTemplate jdbcTemplate) {
+            ObjectMapper objectMapper, JdbcTemplate jdbcTemplate) {
         this.objectMapper = objectMapper;
         this.jdbcTemplate = jdbcTemplate;
     }
@@ -44,7 +44,9 @@ public class EstadoCuentaProjectionWorker {
                     END
                     """;
 
-            jdbcTemplate.update(sql, evento.getAggregateId(), evento.getVersion(), evento.getAggregateId(), evento.getTipoEvento(), evento.getMonto(), evento.getVersion(), "");
+            jdbcTemplate.update(sql, evento.getAggregateId(), evento.getVersion(),
+                    evento.getAggregateId(), evento.getTipoEvento(), evento.getMonto(), evento.getVersion(),
+                    evento.getMotivoDevolucion());
 
         } catch (Exception ex) {
             System.err.println("Error en proyeccion EdoCuenta: " + ex.getMessage());

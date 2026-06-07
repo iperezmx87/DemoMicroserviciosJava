@@ -26,4 +26,7 @@ public class EventoRecibidoDto {
 
     @JsonProperty("OcurridoEn")
     private String ocurridoEn;
+
+    @JsonProperty("MotivoDevolucion")
+    private String motivoDevolucion;
 }
