@@ -77,7 +77,8 @@ public class EventoBdConverter implements Converter<Document, EventoBase> {
                         (UUID) source.get("IdTransferenciaOrigen"),
                         (Decimal128) source.get("Monto"),
                         (UUID) source.get("CuentaOrigenId"),
-                        (Integer) source.get("Version"));
+                        (Integer) source.get("Version"),
+                        (String) source.get("MotivoDevolucion"));
 
                 evento.setEventId((UUID) source.get("EventId"));
                 evento.setOcurridoEn((java.util.Date) source.get("OcurridoEn"));

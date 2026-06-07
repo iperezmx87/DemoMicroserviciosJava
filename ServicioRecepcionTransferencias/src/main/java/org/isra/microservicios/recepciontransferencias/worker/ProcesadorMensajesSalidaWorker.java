@@ -1,10 +1,10 @@
-package org.isra.microservicios.cuentasmovimientos.worker;
+package org.isra.microservicios.recepciontransferencias.worker;
 
 import java.util.List;
 
-import org.isra.microservicios.cuentasmovimientos.modelo.EventoBase;
-import org.isra.microservicios.cuentasmovimientos.modelo.MensajeSalida;
-import org.isra.microservicios.cuentasmovimientos.repositorio.MensajeSalidaRepositorioInterface;
+import org.isra.microservicios.recepciontransferencias.modelo.EventoBase;
+import org.isra.microservicios.recepciontransferencias.modelo.MensajeSalida;
+import org.isra.microservicios.recepciontransferencias.repositorio.MensajeSalidaRepositorioInterface;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -37,9 +37,7 @@ public class ProcesadorMensajesSalidaWorker {
         for (MensajeSalida mensaje : mensajes) {
             EventoBase evento = objectMapper.readValue(mensaje.getPayload(), EventoBase.class);
             switch (evento.getTipoEvento()) {
-                case "DineroDepositadoEvento",
-                     "DineroRetiradoEvento",
-                     "TransferenciaRealizadaEvento" -> {
+                case "TransferenciaRecibidaEvento", "TransferenciaDevueltaEvento" -> {
                     try {
                         kafkaTemplate
                                 .send("cuentas_movimientos_eventos", mensaje.getId().toString(), mensaje.getPayload())

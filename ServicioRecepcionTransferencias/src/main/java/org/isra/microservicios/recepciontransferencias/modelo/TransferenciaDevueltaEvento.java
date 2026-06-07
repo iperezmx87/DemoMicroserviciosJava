@@ -27,7 +27,7 @@ public class TransferenciaDevueltaEvento extends EventoBase {
     private String motivoDevolucion;
 
     public TransferenciaDevueltaEvento(UUID id, UUID idTransferencia, Decimal128 monto, UUID cuentaOrigenId,
-            int version) {
+            int version, String motivoDevolucion) {
         super();
         this.setEventId(UUID.randomUUID());
         this.monto = monto;
@@ -36,6 +36,7 @@ public class TransferenciaDevueltaEvento extends EventoBase {
         this.setAggregateId(id);
         this.setVersion(version);
         this._t = "TransferenciaDevueltaEvento";
+        this.motivoDevolucion = motivoDevolucion;
     }
 
     public TransferenciaDevueltaEvento() {

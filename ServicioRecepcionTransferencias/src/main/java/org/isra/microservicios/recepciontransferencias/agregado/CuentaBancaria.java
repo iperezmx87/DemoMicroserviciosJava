@@ -36,12 +36,32 @@ public class CuentaBancaria {
         eventos.clear();
     }
 
-    public void recibirTransferencia() {
-        
+    public void recibirTransferencia(UUID cuentaDestinoId, Decimal128 monto) {
+        if (monto.compareTo(Decimal128.POSITIVE_ZERO) <= 0) {
+            throw new IllegalArgumentException("El monto a retirar debe ser mayor que cero.");
+        }
+
+        TransferenciaRecibidaEvento transferenciaRecibidaEvento = new TransferenciaRecibidaEvento(this.getId(), monto,
+                this.getVersion() + 1, cuentaDestinoId);
+
+        aplicarEvento(transferenciaRecibidaEvento);
+
+        eventos.add(transferenciaRecibidaEvento);
     }
 
-    public void devolverTransferncia(){
+    public void devolverTransferncia(UUID idTransferenciaOrigen,
+            UUID idCuentaOrigen, String motivoDevolucion, Decimal128 monto) {
+        if (monto.compareTo(Decimal128.POSITIVE_ZERO) <= 0) {
+            throw new IllegalArgumentException("El monto a retirar debe ser mayor que cero.");
+        }
 
+        TransferenciaDevueltaEvento transferenciaDevueltaEvento = new TransferenciaDevueltaEvento(this.getId(),
+                idTransferenciaOrigen,
+                monto, idCuentaOrigen, this.getVersion() + 1, motivoDevolucion);
+
+        aplicarEvento(transferenciaDevueltaEvento);
+
+        eventos.add(transferenciaDevueltaEvento);
     }
 
     public void reconstruirDesdeEventos(List<EventoBase> eventos) {

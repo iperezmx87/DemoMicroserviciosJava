@@ -1,7 +1,8 @@
 package org.isra.microservicios.recepciontransferencias.dto;
 
-import java.math.BigDecimal;
 import java.util.UUID;
+
+import org.bson.types.Decimal128;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -13,7 +14,7 @@ public class EventoRecibidoDto {
     private UUID eventId;
 
     @JsonProperty("Monto")
-    private BigDecimal monto;
+    private Decimal128 monto;
 
     @JsonProperty("TipoEvento")
     private String tipoEvento;
@@ -26,4 +27,7 @@ public class EventoRecibidoDto {
 
     @JsonProperty("OcurridoEn")
     private String ocurridoEn;
+
+    @JsonProperty("CuentaDestinoId")
+    private UUID cuentaDestinoId;
 }
