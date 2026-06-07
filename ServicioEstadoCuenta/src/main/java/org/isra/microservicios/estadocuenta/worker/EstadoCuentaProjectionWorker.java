@@ -44,8 +44,32 @@ public class EstadoCuentaProjectionWorker {
                     END
                     """;
 
+            String tipoMovimiento = "";
+
+            switch (evento.getTipoEvento()) {
+                case "DineroDepositadoEvento" -> {
+                    tipoMovimiento = "Deposito";
+                }
+
+                case "DineroRetiradoEvento" -> {
+                    tipoMovimiento = "Retiro";
+                }
+
+                case "TransferenciaRealizadaEvento" -> {
+                    tipoMovimiento = "Envío de dinero transferencia";
+                }
+
+                case "TransferenciaRecibidaEvento" -> {
+                    tipoMovimiento = "Recepción de dinero transferencia";
+                }
+
+                case "TransferenciaDevueltaEvento" -> {
+                    tipoMovimiento = "Devolución de dinero transferencia";
+                }
+            }
+
             jdbcTemplate.update(sql, evento.getAggregateId(), evento.getVersion(),
-                    evento.getAggregateId(), evento.getTipoEvento(), evento.getMonto(), evento.getVersion(),
+                    evento.getAggregateId(), tipoMovimiento, evento.getMonto(), evento.getVersion(),
                     evento.getMotivoDevolucion());
 
         } catch (Exception ex) {
